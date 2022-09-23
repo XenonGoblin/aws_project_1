@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # */AIPND-revision/intropyproject-classify-pet-images/print_results.py
 #                                                                             
-# PROGRAMMER: 
-# DATE CREATED:
+# PROGRAMMER: Vijay
+# DATE CREATED: 23/09/2022
 # REVISED DATE: 
 # PURPOSE: Create a function print_results that prints the results statistics
 #          from the results statistics dictionary (results_stats_dic). It 
@@ -26,7 +26,7 @@
 #         This function does not output anything other than printing a summary
 #         of the final results.
 ##
-# TODO 6: Define print_results function below, specifically replace the None
+#       Define print_results function below, specifically replace the None
 #       below by the function definition of the print_results function. 
 #       Notice that this function doesn't to return anything because it  
 #       prints a summary of the results using results_dic and results_stats_dic
@@ -61,6 +61,36 @@ def print_results(results_dic, results_stats_dic, model,
                               False doesn't print anything(default) (bool) 
     Returns:
            None - simply printing results.
-    """    
-    None
-                
+    """   
+
+    print(f"\n\nUsing model {model}:")
+
+    print(f"Total Images: {results_stats_dic['n_images']}")
+    print(f"# Dog Images: {results_stats_dic['n_dogs_img']}")
+    print(f"# Not Dog Images: {results_stats_dic['n_notdogs_img']}")
+
+    print("")
+    print ("{:<20} {:<20} {:<20} {:<20}".format(
+        '% Correct Not-a Dog',
+        '% Correct Dogs',
+        '% Correct Breed',
+        '% Match'))
+    print ("{:<20} {:<20} {:<20} {:<20}".format(
+        results_stats_dic['pct_correct_notdogs'], 
+        results_stats_dic['pct_correct_dogs'], 
+        results_stats_dic['pct_correct_breed'], 
+        results_stats_dic['pct_match']))
+
+    if print_incorrect_dogs:
+        if (results_stats_dic['n_correct_dogs'] + results_stats_dic['n_correct_notdogs']) != results_stats_dic['n_images']:
+                print("")
+                for key in results_dic:
+                        if sum(results_dic[key][3:]) == 1:
+                                print(f"{key}: {results_dic[key][0]} was misclassifed as a dog")
+
+    if print_incorrect_breed:
+        if results_stats_dic['n_correct_breed'] != results_stats_dic['n_images']:
+                print("")
+                for key in results_dic:
+                        if sum(results_dic[key][3:]) == 2 and results_dic[key][2] == 0:
+                                print(f"{key}: {results_dic[key][0]} breed misclassifed as: {results_dic[key][1]}")
