@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 # */AIPND-revision/intropyproject-classify-pet-images/calculates_results_stats.py
 #                                                                             
-# PROGRAMMER:
-# DATE CREATED:                                  
+# PROGRAMMER: Vijay
+# DATE CREATED: 23/09/2022
 # REVISED DATE: 
 # PURPOSE: Create a function calculates_results_stats that calculates the 
 #          statistics of the results of the programrun using the classifier's model 
@@ -38,7 +38,7 @@
 #            pct_correct_notdogs - percentage of correctly classified NON-dogs
 #
 ##
-# TODO 5: Define calculates_results_stats function below, please be certain to replace None
+#       Define calculates_results_stats function below, please be certain to replace None
 #       in the return statement with the results_stats_dic dictionary that you create 
 #       with this function
 # 
@@ -68,6 +68,22 @@ def calculates_results_stats(results_dic):
                      and the previous topic Calculating Results in the class for details
                      on how to calculate the counts and statistics.
     """        
+    
+    results_stats_dic = {}
+
+    results_stats_dic["n_images"] = len(results_dic)
+    results_stats_dic["n_dogs_img"] = [results_dic[x][3] for x in results_dic].count(1)
+    results_stats_dic["n_notdogs_img"] = [results_dic[x][3] for x in results_dic].count(0)
+    results_stats_dic["n_match"] = [results_dic[x][2] for x in results_dic].count(1)
+    results_stats_dic["n_correct_dogs"] = [a and b for a, b in zip([results_dic[x][3] for x in results_dic], [results_dic[x][4] for x in results_dic])].count(1)
+    results_stats_dic["n_correct_notdogs"] = [(not a) and (not b) for a, b in zip([results_dic[x][3] for x in results_dic], [results_dic[x][4] for x in results_dic])].count(1)
+    results_stats_dic["n_correct_breed"] = [a and b for a, b in zip([results_dic[x][2] for x in results_dic], [results_dic[x][3] for x in results_dic])].count(1)
+
+    results_stats_dic["pct_match"] = results_stats_dic["n_match"]/results_stats_dic["n_images"]*100
+    results_stats_dic["pct_correct_dogs"] = results_stats_dic["n_correct_dogs"]/results_stats_dic["n_dogs_img"]*100
+    results_stats_dic["pct_correct_breed"] = results_stats_dic["n_correct_breed"]/results_stats_dic["n_dogs_img"]*100
+    results_stats_dic["pct_correct_notdogs"] = results_stats_dic["n_correct_notdogs"]/results_stats_dic["n_notdogs_img"]*100
+
     # Replace None with the results_stats_dic dictionary that you created with 
     # this function 
-    return None
+    return results_stats_dic
