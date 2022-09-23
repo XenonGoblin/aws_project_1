@@ -1,0 +1,71 @@
+Command Line Arguments:
+     dir = uploaded_images/ 
+    arch = vgg 
+ dogfile = dognames.txt
+
+Pet Image Label Dictionary has 4 key-value pairs.
+Below are 4 of them:
+ 1 key:              basketball_01.jpg  label:                 basketball
+ 2 key:                 kangroo_01.jpg  label:                    kangroo
+ 3 key:                 maltese_01.jpg  label:                    maltese
+ 4 key:                 maltese_02.jpg  label:                    maltese
+
+     MATCH:
+
+             basketball_01.jpg: 
+Real:                 basketball   Classifier:                     basketball
+
+                maltese_01.jpg: 
+Real:                    maltese   Classifier: maltese dog, maltese terrier, maltese
+
+                maltese_02.jpg: 
+Real:                    maltese   Classifier: maltese dog, maltese terrier, maltese
+
+ NOT A MATCH:
+
+                kangroo_01.jpg: 
+Real:                    kangroo   Classifier:        wallaby, brush kangaroo
+
+# Total Images 4 # Matches: 3 # NOT Matches: 1
+
+     MATCH:
+
+             basketball_01.jpg: 
+Real:                 basketball   Classifier:                     basketball  
+PetLabelDog: 0  ClassLabelDog: 0
+
+                maltese_01.jpg: 
+Real:                    maltese   Classifier: maltese dog, maltese terrier, maltese  
+PetLabelDog: 1  ClassLabelDog: 1
+
+                maltese_02.jpg: 
+Real:                    maltese   Classifier: maltese dog, maltese terrier, maltese  
+PetLabelDog: 1  ClassLabelDog: 1
+
+ NOT A MATCH:
+
+                kangroo_01.jpg: 
+Real:                    kangroo   Classifier:        wallaby, brush kangaroo  
+PetLabelDog: 0  ClassLabelDog: 0
+
+# Total Images 4 # Matches: 3 # NOT Matches: 1
+
+ ** Statistics from calculates_results_stats() function:
+N Images:  4  N Dog Images:  2  N NotDog Images:  2 
+Pct Corr dog: 100.0 Pct Corr NOTdog: 100.0  Pct Corr Breed: 100.0
+
+ ** Check Statistics - calculated from this function as a check:
+N Images:  4  N Dog Images:  2  N NotDog Images:  2 
+Pct Corr dog: 100.0 Pct Corr NOTdog: 100.0  Pct Corr Breed: 100.0
+
+
+Using model vgg:
+Total Images: 4
+# Dog Images: 2
+# Not Dog Images: 2
+
+% Correct Not-a Dog  % Correct Dogs       % Correct Breed      % Match             
+100.0                100.0                100.0                75.0                
+
+
+** Total Elapsed Runtime: 0:0:1
